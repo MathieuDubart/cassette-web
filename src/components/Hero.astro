@@ -1,0 +1,160 @@
+---
+const githubUrl = "https://github.com/MathieuDubart/Cassette";
+---
+
+<section class="relative isolate overflow-hidden">
+  <div class="pointer-events-none absolute inset-0 -z-10">
+    <div
+      class="absolute -top-32 -right-24 h-[36rem] w-[36rem] rounded-full opacity-60 blur-3xl"
+      style="background: radial-gradient(closest-side, var(--color-accent-soft), transparent 70%);"
+    >
+    </div>
+    <div
+      class="absolute top-1/3 -left-32 h-[28rem] w-[28rem] rounded-full opacity-40 blur-3xl"
+      style="background: radial-gradient(closest-side, var(--color-accent-soft), transparent 70%);"
+    >
+    </div>
+  </div>
+
+  <header class="mx-auto flex w-full max-w-7xl items-center justify-between px-6 pt-6 sm:px-8 sm:pt-8">
+    <a
+      href="#"
+      class="group inline-flex items-center gap-2 text-base font-semibold tracking-tight text-text-primary"
+      aria-label="Cassette home"
+    >
+      <span
+        class="grid h-8 w-8 place-items-center rounded-lg bg-text-primary text-bg-primary"
+        aria-hidden="true"
+      >
+        <svg viewBox="0 0 24 24" fill="none" class="h-4 w-4">
+          <rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6" />
+          <circle cx="8.5" cy="12" r="1.6" fill="currentColor" />
+          <circle cx="15.5" cy="12" r="1.6" fill="currentColor" />
+          <path d="M3 16h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+        </svg>
+      </span>
+      <span>Cassette</span>
+    </a>
+
+    <nav class="flex items-center gap-2 sm:gap-1" aria-label="Primary">
+      <a
+        href="#features"
+        class="rounded-full px-3 py-1.5 text-sm font-medium text-text-secondary transition-colors hover:text-text-primary"
+        >Features</a
+      >
+      <a
+        href={githubUrl}
+        rel="noopener"
+        target="_blank"
+        class="rounded-full px-3 py-1.5 text-sm font-medium text-text-secondary transition-colors hover:text-text-primary"
+        >GitHub</a
+      >
+    </nav>
+  </header>
+
+  <div class="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 pt-16 pb-24 sm:px-8 sm:pt-24 lg:grid-cols-12 lg:gap-16 lg:pt-28 lg:pb-32">
+    <div class="lg:col-span-7">
+      <p
+        class="reveal inline-flex items-center gap-2 rounded-full border border-border-subtle bg-bg-primary/60 px-3 py-1 text-xs font-medium tracking-wide text-text-secondary uppercase backdrop-blur"
+      >
+        <span class="inline-block h-1.5 w-1.5 rounded-full bg-accent-primary"></span>
+        Private beta · Targeting Q3 2026
+      </p>
+
+      <h1
+        class="reveal reveal-delay-100 mt-6 font-semibold text-text-primary"
+        style="font-size: clamp(2.75rem, 7.5vw, 5.75rem); line-height: 1.02; letter-spacing: -0.035em;"
+      >
+        Your music,<br />your server,<br /><span class="text-accent-primary">your app.</span>
+      </h1>
+
+      <p
+        class="reveal reveal-delay-200 mt-7 max-w-xl text-lg text-text-secondary sm:text-xl"
+        style="line-height: 1.55;"
+      >
+        Cassette is a native iOS and macOS client for Subsonic and OpenSubsonic. Beautiful, fast,
+        and built for people who self-host.
+      </p>
+
+      <div class="reveal reveal-delay-300 mt-10 flex flex-wrap items-center gap-3">
+        <a
+          href={githubUrl}
+          rel="noopener"
+          target="_blank"
+          aria-disabled="true"
+          class="group inline-flex items-center gap-2 rounded-full bg-accent-primary px-6 py-3 text-base font-medium text-bg-primary shadow-[0_8px_24px_-8px_rgb(255_127_63/0.5)] transition-all duration-200 hover:bg-accent-hover hover:scale-[1.02] active:scale-[0.99]"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5" aria-hidden="true">
+            <path
+              d="M17.564 13.067c-.027-2.7 2.205-3.998 2.305-4.062-1.255-1.835-3.211-2.086-3.911-2.115-1.665-.168-3.249.978-4.092.978-.844 0-2.15-.953-3.534-.927-1.819.027-3.498 1.058-4.435 2.685-1.892 3.276-.484 8.123 1.36 10.78.901 1.302 1.978 2.766 3.392 2.713 1.36-.054 1.875-.881 3.523-.881 1.647 0 2.108.881 3.547.854 1.464-.027 2.39-1.328 3.286-2.633 1.034-1.514 1.46-2.978 1.487-3.054-.033-.014-2.85-1.094-2.928-4.338zM14.83 5.176c.752-.911 1.258-2.176 1.12-3.434-1.082.043-2.39.72-3.166 1.63-.696.806-1.305 2.094-1.14 3.327 1.205.094 2.435-.612 3.187-1.523z"
+            ></path>
+          </svg>
+          Coming soon on the App Store
+        </a>
+
+        <a
+          href={githubUrl}
+          rel="noopener"
+          target="_blank"
+          class="inline-flex items-center gap-2 rounded-full border border-border-subtle bg-transparent px-6 py-3 text-base font-medium text-text-primary transition-colors duration-200 hover:bg-bg-secondary"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5" aria-hidden="true">
+            <path
+              d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.082-.73.082-.73 1.205.085 1.838 1.236 1.838 1.236 1.07 1.835 2.81 1.305 3.495.998.108-.776.418-1.305.762-1.605-2.665-.305-5.467-1.332-5.467-5.93 0-1.31.467-2.38 1.236-3.22-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 0 1 3.003-.404c1.02.005 2.047.138 3.005.404 2.29-1.552 3.297-1.23 3.297-1.23.654 1.652.243 2.873.12 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.807 5.62-5.48 5.92.43.37.82 1.103.82 2.222 0 1.606-.014 2.898-.014 3.293 0 .322.216.694.825.576C20.565 22.092 24 17.594 24 12.297c0-6.627-5.373-12-12-12"
+            ></path>
+          </svg>
+          View on GitHub
+        </a>
+      </div>
+
+      <p class="reveal reveal-delay-400 mt-6 text-sm text-text-tertiary">
+        Currently in private beta · Targeting release Q3 2026
+      </p>
+    </div>
+
+    <div class="reveal reveal-delay-300 lg:col-span-5">
+      <div class="relative mx-auto max-w-[320px] lg:max-w-none">
+        <div
+          aria-hidden="true"
+          class="pointer-events-none absolute inset-0 -z-10 translate-y-8 scale-95 rounded-[3rem] opacity-70 blur-2xl"
+          style="background: radial-gradient(closest-side, rgb(255 127 63 / 0.35), transparent 70%);"
+        >
+        </div>
+
+        <div
+          class="relative aspect-[9/19.5] w-full rounded-[3rem] border border-border-subtle bg-gradient-to-br from-bg-secondary to-bg-primary p-3 shadow-[0_28px_64px_-16px_rgb(255_127_63/0.18),0_12px_28px_-8px_rgb(26_23_20/0.1)]"
+          role="img"
+          aria-label="iPhone screenshot of the Cassette app — placeholder"
+        >
+          <div
+            class="relative h-full w-full overflow-hidden rounded-[2.25rem] bg-gradient-to-br from-accent-soft via-bg-primary to-bg-secondary"
+          >
+            <div
+              aria-hidden="true"
+              class="absolute top-2 left-1/2 h-5 w-24 -translate-x-1/2 rounded-full bg-text-primary"
+            >
+            </div>
+
+            <div class="flex h-full w-full flex-col items-center justify-center px-6 text-center">
+              <span
+                class="grid h-14 w-14 place-items-center rounded-2xl bg-accent-primary text-bg-primary shadow-md"
+                aria-hidden="true"
+              >
+                <svg viewBox="0 0 24 24" fill="none" class="h-7 w-7">
+                  <rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6" />
+                  <circle cx="8.5" cy="12" r="1.6" fill="currentColor" />
+                  <circle cx="15.5" cy="12" r="1.6" fill="currentColor" />
+                  <path d="M3 16h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                </svg>
+              </span>
+              <p class="mt-4 text-sm font-medium tracking-wide text-text-secondary uppercase">
+                iPhone screenshot
+              </p>
+              <p class="mt-1 text-xs text-text-tertiary">Placeholder</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
