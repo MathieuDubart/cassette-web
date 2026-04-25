@@ -1,43 +1,42 @@
-# Astro Starter Kit: Minimal
+# Cassette — Landing Page
 
-```sh
-npm create astro@latest -- --template minimal
+Public marketing site for [Cassette](https://github.com/MathieuDubart/Cassette), a native iOS and macOS client for Subsonic and OpenSubsonic music servers.
+
+Built with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com), deployed on GitHub Pages.
+
+## Develop
+
+```bash
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The dev server runs on `http://localhost:4321`.
 
-## 🚀 Project Structure
+## Build
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```bash
+npm run build
+npm run preview
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+The production output is generated in `dist/`.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Deploy
 
-Any static assets, like images, can be placed in the `public/` directory.
+Pushes to `main` trigger `.github/workflows/deploy.yml`, which builds the site with `withastro/action@v3` and publishes it via GitHub Pages.
 
-## 🧞 Commands
+Before the first deploy, in the repo settings under **Pages**, set **Source** to **GitHub Actions**.
 
-All commands are run from the root of the project, from a terminal:
+### Custom domain
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+To use a custom domain (e.g. `cassette.mathieu-dubart.fr`):
 
-## 👀 Want to learn more?
+1. Add a `CNAME` file in `public/` containing the bare domain (one line, no protocol).
+2. Update `site` in `astro.config.mjs` to the new origin and clear `base` (set to `/`).
+3. In the repo settings under **Pages**, enter the same domain in **Custom domain**.
+4. Configure DNS — for an apex domain add `A` records pointing to GitHub Pages IPs (`185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`); for a subdomain, add a `CNAME` record pointing to `<username>.github.io`.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## License
+
+GPL-3.0-or-later, matching the Cassette app.
