@@ -1,0 +1,80 @@
+---
+import FeatureBlock from "./FeatureBlock.astro";
+---
+
+<section id="features" class="features-section" aria-label="Features">
+  <div class="features-container">
+    <FeatureBlock
+      heading="Crafted for iPhone."
+      body="Native Swift and SwiftUI from the ground up. Liquid Glass design language on iOS 26+. No web wrappers, no Electron, no compromises. Cassette feels like it belongs on your phone because it does."
+      screenshotPosition="right"
+      screenshotAlt="Cassette home screen on iPhone showing pinned albums and library rows"
+      index={0}
+    />
+    <FeatureBlock
+      heading="Listen offline. Really."
+      body="Download albums and playlists for true offline access. Your music plays even without a connection — and so does your library, your search, your queue, your favorites. Nothing breaks when the network drops."
+      screenshotPosition="left"
+      screenshotAlt="Cassette in offline mode showing a downloaded album with airplane mode active"
+      index={1}
+    />
+    <FeatureBlock
+      heading="Designed for music lovers."
+      body="Cover art that breathes color into the interface. FLAC and lossless badges so you always know what you're hearing. Pinned albums on your home screen, queue management, AirPlay, lock screen controls — every detail considered."
+      screenshotPosition="right"
+      screenshotAlt="Cassette full-screen player view with cover art and dominant color gradient"
+      index={2}
+    />
+    <FeatureBlock
+      heading="Yours forever."
+      body="Open source under GPL-3.0. No subscription, no recurring fee — pay once on the App Store and own it. No accounts to create, no telemetry sent home, no ads served. Your music, your data, your app."
+      screenshotPosition="left"
+      screenshotAlt="Cassette settings view showing the no-tracking, open source, and GPL-3.0 statements"
+      index={3}
+    />
+  </div>
+</section>
+
+<style>
+  .features-section {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .features-container {
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .features-container {
+      padding-inline: 3rem;
+    }
+  }
+</style>
+
+<script>
+  const setupFeatureReveal = () => {
+    const blocks = document.querySelectorAll<HTMLElement>(".feature-block");
+    if (blocks.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("feature-visible");
+            observer.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.2, rootMargin: "0px 0px -100px 0px" }
+    );
+
+    blocks.forEach((block) => observer.observe(block));
+  };
+
+  setupFeatureReveal();
+  document.addEventListener("astro:page-load", setupFeatureReveal);
+</script>

@@ -1,0 +1,91 @@
+---
+interface Props {
+  src?: string;
+  alt: string;
+  tilt?: "left" | "right" | "none";
+}
+
+const { src, alt, tilt = "none" } = Astro.props;
+
+const tiltClass =
+  tilt === "left" ? "phone-tilt-left" : tilt === "right" ? "phone-tilt-right" : "";
+---
+
+<div class={`phone-mockup ${tiltClass}`} role="img" aria-label={alt}>
+  {
+    src ? (
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        decoding="async"
+        class="phone-mockup-image"
+      />
+    ) : (
+      <div class="phone-mockup-placeholder" aria-hidden="true">
+        <span>iPhone screenshot</span>
+      </div>
+    )
+  }
+</div>
+
+<style>
+  .phone-mockup {
+    aspect-ratio: 9 / 19.5;
+    width: 100%;
+    max-width: 280px;
+    border-radius: 3rem;
+    overflow: hidden;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border-subtle);
+    box-shadow:
+      0 25px 50px -12px rgba(255, 127, 63, 0.15),
+      0 12px 24px -8px rgba(26, 23, 20, 0.1);
+    will-change: transform;
+  }
+
+  @media (min-width: 768px) {
+    .phone-mockup {
+      max-width: 320px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .phone-mockup {
+      max-width: 360px;
+    }
+  }
+
+  .phone-tilt-left {
+    transform: rotate(-2deg);
+  }
+
+  .phone-tilt-right {
+    transform: rotate(2deg);
+  }
+
+  .phone-mockup-placeholder {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    background: var(--color-accent-soft);
+    color: var(--color-text-tertiary);
+    font-style: italic;
+    font-size: 0.95rem;
+    letter-spacing: -0.01em;
+  }
+
+  .phone-mockup-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .phone-tilt-left,
+    .phone-tilt-right {
+      transform: none;
+    }
+  }
+</style>
