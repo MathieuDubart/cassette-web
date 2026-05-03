@@ -1,0 +1,120 @@
+---
+const issuesUrl = "https://github.com/MathieuDubart/Cassette/issues";
+
+type Status = "tested" | "compatible";
+
+interface Server {
+  name: string;
+  status: Status;
+}
+
+const servers: Server[] = [
+  { name: "Navidrome", status: "tested" },
+  { name: "Subsonic", status: "tested" },
+  { name: "Airsonic", status: "tested" },
+  { name: "Airsonic-Advanced", status: "tested" },
+  { name: "Gonic", status: "tested" },
+  { name: "Funkwhale", status: "tested" },
+  { name: "Ampache", status: "tested" },
+  { name: "LMS", status: "tested" },
+  { name: "Astiga", status: "compatible" },
+  { name: "Booksonic", status: "compatible" },
+  { name: "Madsonic", status: "compatible" },
+  { name: "Supysonic", status: "compatible" },
+];
+---
+
+<section
+  id="server-compatibility"
+  class="relative isolate"
+  aria-label="Server compatibility"
+>
+  <div class="mx-auto w-full max-w-7xl px-6 py-24 sm:px-8 sm:py-32 lg:py-40">
+    <div class="reveal max-w-3xl">
+      <p
+        class="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.18em] text-accent-primary uppercase"
+      >
+        <span class="inline-block h-1.5 w-1.5 rounded-full bg-accent-primary"></span>
+        Works with
+      </p>
+
+      <h2
+        class="mt-5 font-semibold text-text-primary"
+        style="font-size: clamp(2.25rem, 5.5vw, 3.75rem); line-height: 1.05; letter-spacing: -0.03em;"
+      >
+        Bring your own server.
+      </h2>
+
+      <p
+        class="mt-6 max-w-2xl text-lg text-text-secondary sm:text-xl"
+        style="line-height: 1.55;"
+      >
+        Cassette connects to any Subsonic-compatible server. You own your
+        library, your files, and your data.
+      </p>
+    </div>
+
+    <ul
+      class="reveal reveal-delay-100 mt-14 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4"
+      role="list"
+    >
+      {
+        servers.map((server) => (
+          <li
+            class="group flex items-center justify-between gap-3 rounded-2xl border border-border-subtle bg-bg-secondary/40 px-5 py-4 transition-colors duration-200 hover:bg-bg-secondary/70"
+          >
+            <span class="text-base font-medium text-text-primary sm:text-[1.0625rem]">
+              {server.name}
+            </span>
+            {server.status === "tested" ? (
+              <span
+                class="inline-flex items-center gap-1.5 text-xs font-medium tracking-wide text-accent-primary uppercase"
+                aria-label="Tested"
+                title="Tested by the Cassette team"
+              >
+                <svg
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-3.5 w-3.5"
+                  aria-hidden="true"
+                >
+                  <path d="M3 8.5l3.5 3.5L13 5" />
+                </svg>
+                Tested
+              </span>
+            ) : (
+              <span
+                class="inline-flex items-center gap-1.5 text-xs font-medium tracking-wide text-text-tertiary uppercase"
+                aria-label="Compatible"
+                title="Implements the Subsonic API — should work"
+              >
+                <span class="inline-block h-1.5 w-1.5 rounded-full bg-text-tertiary/70" />
+                Compatible
+              </span>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+
+    <p
+      class="reveal reveal-delay-200 mt-12 max-w-2xl text-base text-text-secondary"
+      style="line-height: 1.6;"
+    >
+      Don't see your server? If it implements the Subsonic API, it'll work.
+      <a
+        href={issuesUrl}
+        rel="noopener"
+        target="_blank"
+        class="font-medium text-text-primary underline decoration-border-subtle decoration-1 underline-offset-4 transition-colors hover:text-accent-primary hover:decoration-accent-primary"
+      >
+        Open an issue on GitHub
+      </a>
+       if you hit anything weird.
+    </p>
+  </div>
+</section>
