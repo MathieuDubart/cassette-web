@@ -2,7 +2,6 @@
 import PhoneMockup from "./PhoneMockup.astro";
 
 const githubUrl = "https://github.com/MathieuDubart/Cassette";
-const testflightUrl = "https://testflight.apple.com/join/pxCpfpxF";
 const logoUrl = `${import.meta.env.BASE_URL}/images/cassette-wow-loop.svg`.replace(/\/+/g, "/");
 const heroScreenshot = `${import.meta.env.BASE_URL}/images/header.jpeg`.replace(/\/+/g, "/");
 ---
@@ -81,25 +80,10 @@ const heroScreenshot = `${import.meta.env.BASE_URL}/images/header.jpeg`.replace(
 
       <div class="reveal reveal-delay-300 mt-10 flex flex-wrap items-center gap-3">
         <a
-          href={testflightUrl}
-          rel="noopener"
-          target="_blank"
-          aria-disabled="true"
-          class="group inline-flex items-center gap-2 rounded-full bg-accent-primary px-6 py-3 text-base font-medium text-bg-primary shadow-[0_8px_24px_-8px_rgb(255_127_63/0.5)] transition-all duration-200 hover:bg-accent-hover hover:scale-[1.02] active:scale-[0.99]"
-        >
-          <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5" aria-hidden="true">
-            <path
-              d="M17.564 13.067c-.027-2.7 2.205-3.998 2.305-4.062-1.255-1.835-3.211-2.086-3.911-2.115-1.665-.168-3.249.978-4.092.978-.844 0-2.15-.953-3.534-.927-1.819.027-3.498 1.058-4.435 2.685-1.892 3.276-.484 8.123 1.36 10.78.901 1.302 1.978 2.766 3.392 2.713 1.36-.054 1.875-.881 3.523-.881 1.647 0 2.108.881 3.547.854 1.464-.027 2.39-1.328 3.286-2.633 1.034-1.514 1.46-2.978 1.487-3.054-.033-.014-2.85-1.094-2.928-4.338zM14.83 5.176c.752-.911 1.258-2.176 1.12-3.434-1.082.043-2.39.72-3.166 1.63-.696.806-1.305 2.094-1.14 3.327 1.205.094 2.435-.612 3.187-1.523z"
-            ></path>
-          </svg>
-          Available now on TestFlight
-        </a>
-
-        <a
           href={githubUrl}
           rel="noopener"
           target="_blank"
-          class="inline-flex items-center gap-2 rounded-full border border-border-subtle bg-transparent px-6 py-3 text-base font-medium text-text-primary transition-colors duration-200 hover:bg-bg-secondary"
+          class="group inline-flex items-center gap-2 rounded-full bg-accent-primary px-6 py-3 text-base font-medium text-bg-primary shadow-[0_8px_24px_-8px_rgb(255_127_63/0.5)] transition-all duration-200 hover:bg-accent-hover hover:scale-[1.02] active:scale-[0.99]"
         >
           <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5" aria-hidden="true">
             <path
