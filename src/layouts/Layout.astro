@@ -63,9 +63,22 @@ const jsonLd = {
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
   </head>
   <body class="min-h-dvh bg-bg-primary text-text-primary antialiased">
+    <!-- Scroll progress bar -->
+    <div id="scroll-progress" aria-hidden="true"></div>
+
     <slot />
 
     <script>
+      /* ── Scroll progress ─────────────────────────────── */
+      const bar = document.getElementById("scroll-progress");
+      const updateBar = () => {
+        if (!bar) return;
+        const max = document.body.scrollHeight - window.innerHeight;
+        bar.style.width = max > 0 ? ((window.scrollY / max) * 100).toFixed(2) + "%" : "0%";
+      };
+      window.addEventListener("scroll", updateBar, { passive: true });
+
+      /* ── Scroll-triggered reveal ─────────────────────── */
       const observer = new IntersectionObserver(
         (entries) => {
           for (const entry of entries) {
@@ -75,7 +88,7 @@ const jsonLd = {
             }
           }
         },
-        { rootMargin: "0px 0px -10% 0px", threshold: 0.05 }
+        { rootMargin: "0px 0px -8% 0px", threshold: 0.06 }
       );
 
       const reveal = () => {

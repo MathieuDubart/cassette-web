@@ -9,18 +9,18 @@ interface Server {
 }
 
 const servers: Server[] = [
-  { name: "Navidrome", status: "tested" },
-  { name: "Subsonic", status: "tested" },
-  { name: "Airsonic", status: "tested" },
-  { name: "Airsonic-Advanced", status: "tested" },
-  { name: "Gonic", status: "tested" },
-  { name: "Funkwhale", status: "tested" },
-  { name: "Ampache", status: "tested" },
-  { name: "LMS", status: "tested" },
-  { name: "Astiga", status: "compatible" },
-  { name: "Booksonic", status: "compatible" },
-  { name: "Madsonic", status: "compatible" },
-  { name: "Supysonic", status: "compatible" },
+  { name: "Navidrome",        status: "tested" },
+  { name: "Subsonic",         status: "tested" },
+  { name: "Airsonic",         status: "tested" },
+  { name: "Airsonic-Advanced",status: "tested" },
+  { name: "Gonic",            status: "tested" },
+  { name: "Funkwhale",        status: "tested" },
+  { name: "Ampache",          status: "tested" },
+  { name: "LMS",              status: "tested" },
+  { name: "Astiga",           status: "compatible" },
+  { name: "Booksonic",        status: "compatible" },
+  { name: "Madsonic",         status: "compatible" },
+  { name: "Supysonic",        status: "compatible" },
 ];
 ---
 
@@ -30,38 +30,41 @@ const servers: Server[] = [
   aria-label="Server compatibility"
 >
   <div class="mx-auto w-full max-w-7xl px-6 py-24 sm:px-8 sm:py-32 lg:py-40">
-    <div class="reveal max-w-3xl">
-      <p
-        class="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.18em] text-accent-primary uppercase"
-      >
-        <span class="inline-block h-1.5 w-1.5 rounded-full bg-accent-primary"></span>
-        Works with
-      </p>
 
-      <h2
-        class="mt-5 font-semibold text-text-primary"
-        style="font-size: clamp(2.25rem, 5.5vw, 3.75rem); line-height: 1.05; letter-spacing: -0.03em;"
-      >
-        Bring your own server.
-      </h2>
+    <!-- Label — standard reveal -->
+    <p class="reveal sc-label inline-flex items-center gap-2 text-xs font-semibold tracking-[0.18em] text-accent-primary uppercase">
+      <span class="inline-block h-1.5 w-1.5 rounded-full bg-accent-primary"></span>
+      Works with
+    </p>
 
-      <p
-        class="mt-6 max-w-2xl text-lg text-text-secondary sm:text-xl"
-        style="line-height: 1.55;"
-      >
-        Cassette connects to any Subsonic-compatible server. You own your
-        library, your files, and your data.
-      </p>
-    </div>
+    <!-- Heading — line-mask reveal -->
+    <h2
+      class="reveal sc-heading mt-5 font-semibold text-text-primary"
+      style="font-size: clamp(2.25rem, 5.5vw, 3.75rem); line-height: 1.05; letter-spacing: -0.03em;"
+    >
+      <span class="lm"><span class="lm-i" data-line="1">Bring your own</span></span>
+      <span class="lm"><span class="lm-i" data-line="2">server.</span></span>
+    </h2>
 
+    <!-- Subtitle — blur reveal -->
+    <p
+      class="reveal sc-body mt-6 max-w-2xl text-lg text-text-secondary sm:text-xl"
+      style="line-height: 1.55;"
+    >
+      Cassette connects to any Subsonic-compatible server. You own your
+      library, your files, and your data.
+    </p>
+
+    <!-- Server grid — each card individually revealed with stagger -->
     <ul
-      class="reveal reveal-delay-100 mt-14 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4"
+      class="mt-14 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4"
       role="list"
     >
       {
-        servers.map((server) => (
+        servers.map((server, index) => (
           <li
-            class="group flex items-center justify-between gap-3 rounded-2xl border border-border-subtle bg-bg-tertiary px-5 py-4 transition-colors duration-200 hover:border-accent-primary/40"
+            class="server-card reveal group flex items-center justify-between gap-3 rounded-2xl border border-border-subtle bg-bg-tertiary px-5 py-4 transition-colors duration-300 hover:border-accent-primary/50 hover:bg-bg-tertiary"
+            style={`transition-delay: ${index * 55}ms;`}
           >
             <span class="text-base font-medium text-text-primary sm:text-[1.0625rem]">
               {server.name}
@@ -102,8 +105,8 @@ const servers: Server[] = [
     </ul>
 
     <p
-      class="reveal reveal-delay-200 mt-12 max-w-2xl text-base text-text-secondary"
-      style="line-height: 1.6;"
+      class="reveal sc-note mt-12 max-w-2xl text-base text-text-secondary"
+      style="line-height: 1.6; transition-delay: 200ms;"
     >
       Don't see your server? If it implements the Subsonic API, it'll work.
       <a
@@ -118,3 +121,50 @@ const servers: Server[] = [
     </p>
   </div>
 </section>
+
+<style>
+  /* Label pops in slightly faster */
+  .sc-label { transition-delay: 0ms; }
+
+  /* Heading: lm-i transitions are triggered by .is-visible on the .reveal.sc-heading */
+  .sc-heading {
+    /* Override the reveal opacity/transform so only the lm-i animates */
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  /* When the heading enters viewport, trigger the line masks */
+  .sc-heading.is-visible .lm-i {
+    transform: none;
+  }
+
+  /* Subtitle — override reveal with blur-to-sharp */
+  .sc-body {
+    filter: blur(6px);
+    transition:
+      opacity  0.8s cubic-bezier(0.22, 1, 0.36, 1) 80ms,
+      transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 80ms,
+      filter   0.8s cubic-bezier(0.22, 1, 0.36, 1) 80ms;
+  }
+
+  .sc-body.is-visible {
+    filter: blur(0px);
+  }
+
+  /* Cards — scale pop on reveal */
+  .server-card {
+    transform: translateY(22px) scale(0.94);
+    /* transition comes from .reveal, transition-delay from inline style */
+  }
+
+  .server-card.is-visible {
+    transform: none;
+  }
+
+  /* Footer note */
+  .sc-note { transition-delay: 200ms; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sc-body    { filter: none !important; }
+    .server-card { transform: none !important; }
+  }
+</style>
