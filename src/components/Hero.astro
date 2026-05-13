@@ -6,19 +6,12 @@ const logoUrl = `${import.meta.env.BASE_URL}/images/cassette-wow-loop.svg`.repla
 const heroScreenshot = `${import.meta.env.BASE_URL}/images/header.jpeg`.replace(/\/+/g, "/");
 ---
 
-<section class="relative isolate overflow-hidden">
-  <div class="pointer-events-none absolute inset-0 -z-10">
-    <div
-      class="absolute -top-32 -right-24 h-[36rem] w-[36rem] rounded-full opacity-60 blur-3xl"
-      style="background: radial-gradient(closest-side, var(--color-accent-soft), transparent 70%);"
-    >
-    </div>
-    <div
-      class="absolute top-1/3 -left-32 h-[28rem] w-[28rem] rounded-full opacity-40 blur-3xl"
-      style="background: radial-gradient(closest-side, var(--color-accent-soft), transparent 70%);"
-    >
-    </div>
-  </div>
+<section class="relative isolate min-h-screen overflow-hidden">
+  <div
+    aria-hidden="true"
+    class="hero-halo pointer-events-none absolute inset-0 -z-10"
+    style="background: radial-gradient(ellipse 60% 40% at 50% 60%, #6C47F540 0%, transparent 70%);"
+  ></div>
 
   <header class="mx-auto flex w-full max-w-7xl items-center justify-between px-6 pt-6 sm:px-8 sm:pt-8">
     <a
@@ -56,34 +49,32 @@ const heroScreenshot = `${import.meta.env.BASE_URL}/images/header.jpeg`.replace(
 
   <div class="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 pt-16 pb-24 sm:px-8 sm:pt-24 lg:grid-cols-12 lg:gap-16 lg:pt-28 lg:pb-32">
     <div class="lg:col-span-7">
-      <p
-        class="reveal inline-flex items-center gap-2 rounded-full border border-border-subtle bg-bg-primary/60 px-3 py-1 text-xs font-medium tracking-wide text-text-secondary uppercase backdrop-blur"
-      >
+      <p class="hero-badge inline-flex items-center gap-2 rounded-full border border-accent-primary/20 bg-accent-soft px-3 py-1 text-xs font-medium tracking-wide text-accent-fg uppercase">
         <span class="inline-block h-1.5 w-1.5 rounded-full bg-accent-primary"></span>
         Now available on TestFlight
       </p>
 
       <h1
-        class="reveal reveal-delay-100 mt-6 font-semibold text-text-primary"
+        class="hero-title mt-6 font-bold text-text-primary"
         style="font-size: clamp(2.75rem, 7.5vw, 5.75rem); line-height: 1.02; letter-spacing: -0.035em;"
       >
-        Your music,<br />your server,<br /><span class="text-accent-primary">your app.</span>
+        Your music,<br />your server,<br /><span class="text-accent-bright">your app.</span>
       </h1>
 
       <p
-        class="reveal reveal-delay-200 mt-7 max-w-xl text-lg text-text-secondary sm:text-xl"
+        class="hero-subtitle mt-7 max-w-xl text-lg text-text-secondary sm:text-xl"
         style="line-height: 1.55;"
       >
         Cassette is a native iOS and macOS client for Subsonic and OpenSubsonic. Beautiful, fast,
         and built for people who self-host.
       </p>
 
-      <div class="reveal reveal-delay-300 mt-10 flex flex-wrap items-center gap-3">
+      <div class="hero-cta mt-10 flex flex-wrap items-center gap-3">
         <a
           href="https://testflight.apple.com/join/pxCpfpxF"
           rel="noopener"
           target="_blank"
-          class="group inline-flex items-center gap-2 rounded-full bg-accent-primary px-6 py-3 text-base font-medium text-bg-primary shadow-[0_8px_24px_-8px_rgb(255_127_63/0.5)] transition-all duration-200 hover:bg-accent-hover hover:scale-[1.02] active:scale-[0.99]"
+          class="group inline-flex items-center gap-2 rounded-full bg-accent-primary px-6 py-3 text-base font-medium text-white transition-colors duration-150 hover:bg-accent-hover active:scale-[0.99]"
         >
           <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5" aria-hidden="true">
             <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
@@ -94,7 +85,7 @@ const heroScreenshot = `${import.meta.env.BASE_URL}/images/header.jpeg`.replace(
           href={githubUrl}
           rel="noopener"
           target="_blank"
-          class="group inline-flex items-center gap-2 rounded-full border border-text-tertiary px-6 py-3 text-base font-medium text-text-primary transition-all duration-200 hover:border-text-secondary hover:scale-[1.02] active:scale-[0.99]"
+          class="group inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-base font-medium text-text-primary transition-colors duration-150 hover:border-white/30 active:scale-[0.99]"
         >
           <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5" aria-hidden="true">
             <path
@@ -104,17 +95,15 @@ const heroScreenshot = `${import.meta.env.BASE_URL}/images/header.jpeg`.replace(
           View on GitHub
         </a>
       </div>
-
     </div>
 
-    <div class="reveal reveal-delay-300 lg:col-span-5">
+    <div class="hero-mockup lg:col-span-5">
       <div class="relative mx-auto flex max-w-[320px] justify-center lg:max-w-none">
         <div
           aria-hidden="true"
-          class="pointer-events-none absolute inset-0 -z-10 translate-y-8 scale-95 rounded-[3rem] opacity-70 blur-2xl"
-          style="background: radial-gradient(closest-side, rgb(255 127 63 / 0.35), transparent 70%);"
-        >
-        </div>
+          class="pointer-events-none absolute inset-0 -z-10"
+          style="background: radial-gradient(circle, #6C47F560 0%, transparent 65%); filter: blur(60px);"
+        ></div>
 
         <PhoneMockup
           src={heroScreenshot}
@@ -124,3 +113,29 @@ const heroScreenshot = `${import.meta.env.BASE_URL}/images/header.jpeg`.replace(
     </div>
   </div>
 </section>
+
+<style>
+  .hero-halo {
+    animation: hero-halo-in 1.2s ease-out both;
+  }
+
+  .hero-badge {
+    animation: hero-slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+  }
+
+  .hero-title {
+    animation: hero-slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+  }
+
+  .hero-subtitle {
+    animation: hero-slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+  }
+
+  .hero-cta {
+    animation: hero-pop-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.7s both;
+  }
+
+  .hero-mockup {
+    animation: hero-mockup-up 1s ease-out 0.6s both;
+  }
+</style>
