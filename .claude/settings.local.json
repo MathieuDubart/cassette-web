@@ -3,7 +3,9 @@
     "allow": [
       "Bash(npm run *)",
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(grep -r \"\\\\\\\\$\" /Users/mathieudubart/Sites/cassette-web --include=\"*.ts\" --include=\"*.tsx\" --include=\"*.js\" --include=\"*.jsx\" --include=\"*.json\" --include=\"*.md\" --include=\"*.html\" -n)",
+      "Bash(git *)"
     ]
   }
 }
