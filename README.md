@@ -99,4 +99,4 @@ Add the `reveal` class (and optionally `reveal-delay-100|200|300|400`) to any el
 
 ## License
 
-GPL-3.0-or-later, matching the Cassette app.
+MPL-2.0, matching the Cassette app.
