@@ -1,6 +1,4 @@
 ---
-import PhoneMockup from "./PhoneMockup.astro";
-
 const githubUrl = "https://github.com/MathieuDubart/Cassette";
 const logoUrl = `${import.meta.env.BASE_URL}/images/cassette-icon-1024.png`.replace(/\/+/g, "/");
 const heroScreenshot = `${import.meta.env.BASE_URL}/images/header.jpeg`.replace(/\/+/g, "/");
@@ -122,13 +120,38 @@ const heroScreenshot = `${import.meta.env.BASE_URL}/images/header.jpeg`.replace(
           class="pointer-events-none absolute inset-0 -z-10"
           style="background: radial-gradient(circle, rgba(108,71,245,0.5) 0%, transparent 65%); filter: blur(55px);"
         ></div>
-        <PhoneMockup src={heroScreenshot} alt="Cassette app on iPhone — home screen" />
+        <img
+          src={heroScreenshot}
+          alt="Cassette app on iPhone — home screen"
+          loading="eager"
+          decoding="sync"
+          class="hero-screenshot"
+        />
       </div>
     </div>
   </div>
 </section>
 
 <style>
+  /* ── Hero screenshot ────────────────────────────────── */
+  .hero-screenshot {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    margin-inline: auto;
+    border-radius: 2.5rem;
+    filter: drop-shadow(0 25px 50px rgba(108, 71, 245, 0.22))
+      drop-shadow(0 12px 24px rgba(15, 13, 26, 0.4));
+  }
+
+  @media (min-width: 768px) {
+    .hero-screenshot { max-width: 340px; }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-screenshot { max-width: 380px; }
+  }
+
   /* ── Atmospheric ─────────────────────────────────────── */
   .hero-halo { animation: hero-halo-in 1.6s ease-out both; }
 
