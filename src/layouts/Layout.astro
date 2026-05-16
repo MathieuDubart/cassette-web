@@ -12,24 +12,70 @@ const {
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
-const ogImage = new URL(`${import.meta.env.BASE_URL}/og-image.png`.replace(/\/+/g, "/"), Astro.site).toString();
+const ogImage = new URL(
+  `${import.meta.env.BASE_URL}/images/cassette-icon-1024.png`.replace(/\/+/g, "/"),
+  Astro.site,
+).toString();
+
+const siteUrl = Astro.site?.toString() ?? "https://getcassette.app/";
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "MobileApplication",
-  name: "Cassette",
-  operatingSystem: "iOS, macOS",
-  applicationCategory: "MusicApplication",
-  description,
-  url: canonicalURL,
-  author: {
-    "@type": "Person",
-    name: "Mathieu Dubart",
-  },
-  offers: {
-    "@type": "Offer",
-    availability: "https://schema.org/PreOrder",
-  },
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}#website`,
+      url: siteUrl,
+      name: "Cassette",
+      description,
+      publisher: { "@id": `${siteUrl}#person` },
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": `${siteUrl}#app`,
+      name: "Cassette",
+      operatingSystem: "iOS 17.0+, macOS 14.0+",
+      applicationCategory: "MusicApplication",
+      applicationSubCategory: "Music Player",
+      description,
+      url: canonicalURL,
+      downloadUrl: "https://testflight.apple.com/join/pxCpfpxF",
+      screenshot: new URL(
+        `${import.meta.env.BASE_URL}/images/header.jpeg`.replace(/\/+/g, "/"),
+        Astro.site,
+      ).toString(),
+      featureList: [
+        "Native Swift and SwiftUI",
+        "Offline playback with downloaded albums and playlists",
+        "FLAC and lossless audio support",
+        "Subsonic API compatible",
+        "OpenSubsonic API compatible",
+        "Navidrome, Airsonic, Gonic, Ampache support",
+        "No tracking or telemetry",
+        "Open source under MPL-2.0",
+        "AirPlay support",
+        "Lock screen and Now Playing controls",
+        "Cover art with dominant color theming",
+        "Queue management",
+      ],
+      keywords:
+        "Navidrome client, Subsonic iOS app, OpenSubsonic client, self-hosted music player, Airsonic iOS, Gonic client, iPhone music player",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+        availability: "https://schema.org/InStock",
+      },
+      author: { "@id": `${siteUrl}#person` },
+      license: "https://opensource.org/licenses/MPL-2.0",
+      isAccessibleForFree: true,
+    },
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}#person`,
+      name: "Mathieu Dubart",
+    },
+  ],
 };
 ---
 
@@ -41,21 +87,28 @@ const jsonLd = {
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#0F0D1A" />
     <meta name="color-scheme" content="dark" />
+    <meta name="robots" content="index, follow" />
 
-    <link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL}/images/cassette-icon-1024.png`.replace(/\/+/g, "/")} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/images/cassette-icon-1024.png" />
     <link rel="canonical" href={canonicalURL} />
 
     <title>{title}</title>
     <meta name="description" content={description} />
 
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Cassette" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="1024" />
+    <meta property="og:image:alt" content="Cassette — Native iOS and macOS music player for Navidrome and Subsonic" />
     <meta property="og:locale" content="en_US" />
 
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
