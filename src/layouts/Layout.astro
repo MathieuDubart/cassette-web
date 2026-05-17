@@ -123,6 +123,15 @@ const jsonLd = {
     <slot />
 
     <script>
+      import Lenis from "lenis";
+
+      const lenis = new Lenis({ autoRaf: true });
+
+      /* expose for other scripts that need scroll position */
+      (window as any).__lenis = lenis;
+    </script>
+
+    <script>
       /* ── Scroll progress ─────────────────────────────── */
       const bar = document.getElementById("scroll-progress");
       const updateBar = () => {
