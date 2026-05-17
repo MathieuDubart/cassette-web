@@ -8,28 +8,22 @@ interface Props {
   index: number;
 }
 
-const { heading, body, screenshotPosition, screenshotSrc, screenshotAlt, index } =
-  Astro.props;
-
-const sideClass =
-  screenshotPosition === "right" ? "is-screenshot-right" : "is-screenshot-left";
+const { heading, body, screenshotPosition, screenshotSrc, screenshotAlt, index } = Astro.props;
+const isLeft = screenshotPosition === "left";
 ---
 
 <article
-  class={`feature-block ${sideClass}`}
+  class={`feature-block ${isLeft ? "is-left" : "is-right"}`}
   data-feature-index={index}
   aria-labelledby={`feature-${index}-heading`}
 >
   <div class="feature-text">
-    <!-- Line-mask reveal on heading -->
-    <h2 id={`feature-${index}-heading`} class="feature-heading">
-      <span class="fh-mask"><span class="fh-inner">{heading}</span></span>
-    </h2>
-    <!-- Blur-to-sharp reveal on body -->
+    <p class="feature-label">{String(index + 1).padStart(2, "0")}</p>
+    <h2 id={`feature-${index}-heading`} class="feature-heading">{heading}</h2>
     <p class="feature-body">{body}</p>
   </div>
 
-  <div class="feature-screenshot">
+  <div class="feature-media">
     <img
       src={screenshotSrc}
       alt={screenshotAlt}
@@ -45,153 +39,120 @@ const sideClass =
   .feature-block {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
     align-items: center;
-    padding-block: 5rem;
+    padding-block: 4rem;
+  }
+
+  .feature-block + .feature-block {
+    border-top: 1px solid var(--color-border-subtle);
   }
 
   @media (min-width: 768px) {
     .feature-block {
       grid-template-columns: 1fr 1fr;
       gap: 4rem;
-      padding-block: 8rem;
+      padding-block: 6rem;
     }
 
-    .feature-block.is-screenshot-left .feature-text {
-      grid-column: 2;
-      grid-row: 1;
-    }
-    .feature-block.is-screenshot-left .feature-screenshot {
-      grid-column: 1;
-      grid-row: 1;
-    }
+    .feature-block.is-left .feature-text  { grid-column: 2; grid-row: 1; }
+    .feature-block.is-left .feature-media { grid-column: 1; grid-row: 1; }
   }
 
   @media (min-width: 1024px) {
-    .feature-block { gap: 6rem; }
+    .feature-block { gap: 5rem; }
   }
 
   .feature-text {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 36rem;
   }
 
-  .feature-screenshot {
+  .feature-media {
     display: flex;
     justify-content: center;
   }
 
   @media (min-width: 768px) {
-    .feature-block.is-screenshot-left  .feature-screenshot { justify-content: flex-start; }
-    .feature-block.is-screenshot-right .feature-screenshot { justify-content: flex-end; }
+    .feature-block.is-left  .feature-media { justify-content: flex-start; }
+    .feature-block.is-right .feature-media { justify-content: flex-end; }
   }
 
-  /* ── Feature image ──────────────────────────────────── */
+  /* ── Image ───────────────────────────────────────────── */
   .feature-image {
     display: block;
     width: 100%;
-    max-width: 320px;
-    margin-inline: auto;
+    max-width: 300px;
     border-radius: 2.5rem;
-    filter: drop-shadow(0 20px 40px rgba(108, 71, 245, 0.18))
-      drop-shadow(0 8px 20px rgba(15, 13, 26, 0.35));
+    filter:
+      drop-shadow(0 0 44px rgba(108, 71, 245, 0.26))
+      drop-shadow(0 16px 36px rgba(15, 13, 26, 0.42));
   }
 
-  @media (min-width: 768px) {
-    .feature-image { max-width: 340px; }
+  @media (min-width: 768px)  { .feature-image { max-width: 320px; } }
+  @media (min-width: 1024px) { .feature-image { max-width: 360px; } }
+
+  /* ── Text elements ───────────────────────────────────── */
+  .feature-label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-accent-fg);
+    margin: 0 0 1.25rem;
   }
 
-  @media (min-width: 1024px) {
-    .feature-image { max-width: 380px; }
-  }
-
-  /* ── Heading — line-mask (transition-based, scroll-triggered) */
   .feature-heading {
+    font-size: clamp(1.875rem, 4.5vw, 3rem);
     font-weight: 700;
     letter-spacing: -0.03em;
+    line-height: 1.08;
     color: var(--color-text-primary);
-    font-size: clamp(2.25rem, 5.5vw, 3.75rem);
-    line-height: 1.05;
-    margin: 0 0 1.5rem;
+    margin: 0 0 1.25rem;
   }
 
-  .fh-mask {
-    display: block;
-    overflow: hidden;
-    padding-bottom: 0.06em;
-  }
-
-  .fh-inner {
-    display: block;
-    transform: translateY(112%);
-    transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .feature-block.feature-visible .fh-inner {
-    transform: none;
-  }
-
-  /* ── Body — blur-to-sharp ────────────────────────────── */
   .feature-body {
-    color: var(--color-text-secondary);
-    font-size: 1.125rem;
+    font-size: 1.0625rem;
     line-height: 1.65;
-    max-width: 36rem;
+    color: var(--color-text-secondary);
     margin: 0;
-    opacity: 0;
-    filter: blur(8px);
-    transform: translateY(16px);
-    transition:
-      opacity  0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.18s,
-      filter   0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.18s,
-      transform 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.18s;
   }
 
   @media (min-width: 768px) {
-    .feature-body { font-size: 1.25rem; }
+    .feature-body { font-size: 1.125rem; }
   }
 
-  .feature-block.feature-visible .feature-body {
-    opacity: 1;
-    filter: blur(0px);
-    transform: none;
-  }
-
-  /* ── Screenshot — slide + scale + blur from side ──────── */
-  .feature-screenshot {
+  /* ── Reveal ──────────────────────────────────────────── */
+  .feature-label,
+  .feature-heading,
+  .feature-body,
+  .feature-media {
     opacity: 0;
-    filter: blur(8px);
-    transition:
-      opacity  1s cubic-bezier(0.22, 1, 0.36, 1) 0.12s,
-      transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.12s,
-      filter   0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.12s;
+    transform: translateY(12px);
   }
 
-  .feature-block.is-screenshot-left .feature-screenshot {
-    transform: translateX(-56px) translateY(18px) scale(0.9);
-  }
+  .feature-label   { transition: opacity 0.5s ease-out,        transform 0.5s ease-out; }
+  .feature-heading { transition: opacity 0.5s ease-out  60ms,  transform 0.5s ease-out  60ms; }
+  .feature-body    { transition: opacity 0.5s ease-out 110ms,  transform 0.5s ease-out 110ms; }
+  .feature-media   { transition: opacity 0.5s ease-out  30ms,  transform 0.5s ease-out  30ms; }
 
-  .feature-block.is-screenshot-right .feature-screenshot {
-    transform: translateX(56px) translateY(18px) scale(0.9);
-  }
-
-  .feature-block.feature-visible .feature-screenshot {
+  .feature-block.feature-visible .feature-label,
+  .feature-block.feature-visible .feature-heading,
+  .feature-block.feature-visible .feature-body,
+  .feature-block.feature-visible .feature-media {
     opacity: 1;
     transform: none;
-    filter: blur(0px);
   }
 
-  /* ── Reduced motion ──────────────────────────────────── */
   @media (prefers-reduced-motion: reduce) {
-    .fh-inner,
+    .feature-label,
+    .feature-heading,
     .feature-body,
-    .feature-screenshot {
-      transform: none !important;
-      opacity: 1 !important;
-      filter: none !important;
-      transition: opacity 200ms ease-out !important;
+    .feature-media {
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
   }
 </style>

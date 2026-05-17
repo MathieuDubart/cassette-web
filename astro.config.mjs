@@ -7,7 +7,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://getcassette.app',
-  base: '/',
+  base: '',
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
