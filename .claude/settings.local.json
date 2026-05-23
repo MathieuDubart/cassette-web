@@ -6,7 +6,8 @@
       "Bash(git commit *)",
       "Bash(grep -r \"\\\\\\\\$\" /Users/mathieudubart/Sites/cassette-web --include=\"*.ts\" --include=\"*.tsx\" --include=\"*.js\" --include=\"*.jsx\" --include=\"*.json\" --include=\"*.md\" --include=\"*.html\" -n)",
       "Bash(git *)",
-      "Bash(npm install *)"
+      "Bash(npm install *)",
+      "Bash(pnpm build *)"
     ]
   }
 }

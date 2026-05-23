@@ -66,15 +66,30 @@
 
 /* ── Scroll-triggered reveal (transition-based) ─────────── */
 @layer utilities {
+  /* Standard elements: 32px lift, 600ms expo-out */
   .reveal {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(32px);
     transition:
-      opacity  700ms cubic-bezier(0.22, 1, 0.36, 1),
-      transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+      opacity  600ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
+      transform 600ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms);
   }
 
   .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Device mockups: heavier entrance — 48px lift, 800ms */
+  .reveal-device {
+    opacity: 0;
+    transform: translateY(48px);
+    transition:
+      opacity  800ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
+      transform 800ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms);
+  }
+
+  .reveal-device.is-visible {
     opacity: 1;
     transform: none;
   }
@@ -151,6 +166,24 @@
   transform-origin: left;
 }
 
+/* ── Light theme ────────────────────────────────────────── */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-bg-primary:    #FFFFFF;
+    --color-bg-secondary:  #F5F3FF;
+    --color-bg-tertiary:   #EDE8FF;
+
+    --color-accent-soft:   #EDE8FF;
+    --color-accent-fg:     #5530D4;
+
+    --color-text-primary:   #0F0D1A;
+    --color-text-secondary: #4A3D78;
+    --color-text-tertiary:  #7060A0;
+
+    --color-border-subtle: rgba(108, 71, 245, 0.18);
+  }
+}
+
 /* ── Reduced motion ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -164,6 +197,7 @@
     scroll-behavior: auto !important;
   }
 
-  .reveal { opacity: 1; transform: none; }
-  .lm-i   { transform: none; }
+  .reveal,
+  .reveal-device { opacity: 1; transform: none; }
+  .lm-i          { transform: none; }
 }

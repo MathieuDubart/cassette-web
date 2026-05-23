@@ -114,6 +114,15 @@ const jsonLd = {
     <meta name="twitter:image" content={ogImage} />
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
+
+    <!-- Runs synchronously before paint: no FOUC when sessionStorage has "mac" -->
+    <script is:inline>
+      (function () {
+        if (sessionStorage.getItem("cassette-platform") === "mac") {
+          document.documentElement.dataset.platform = "mac";
+        }
+      })();
+    </script>
   </head>
   <body class="min-h-dvh bg-bg-primary text-text-primary antialiased">
     <!-- Scroll progress bar -->
@@ -155,7 +164,7 @@ const jsonLd = {
       );
 
       const reveal = () => {
-        document.querySelectorAll(".reveal:not(.is-visible)").forEach((el) => {
+        document.querySelectorAll(".reveal:not(.is-visible), .reveal-device:not(.is-visible)").forEach((el) => {
           observer.observe(el);
         });
       };
