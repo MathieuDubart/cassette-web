@@ -125,9 +125,6 @@ const jsonLd = {
     </script>
   </head>
   <body class="min-h-dvh bg-bg-primary text-text-primary antialiased">
-    <!-- Scroll progress bar -->
-    <div id="scroll-progress" aria-hidden="true"></div>
-
     <Nav />
     <slot />
 
@@ -141,15 +138,6 @@ const jsonLd = {
     </script>
 
     <script>
-      /* ── Scroll progress ─────────────────────────────── */
-      const bar = document.getElementById("scroll-progress");
-      const updateBar = () => {
-        if (!bar) return;
-        const max = document.body.scrollHeight - window.innerHeight;
-        bar.style.width = max > 0 ? ((window.scrollY / max) * 100).toFixed(2) + "%" : "0%";
-      };
-      window.addEventListener("scroll", updateBar, { passive: true });
-
       /* ── Scroll-triggered reveal ─────────────────────── */
       const observer = new IntersectionObserver(
         (entries) => {

@@ -19,11 +19,6 @@ const macScreenshot = `${base}/images/header_mac.png`.replace(/\/+/g, "/");
   <!-- Text content — vertically centered in upper portion of 100svh -->
   <div class="hero-content">
 
-    <p class="hero-badge fade-up" style="--d: 0s">
-      <span class="badge-dot"></span>
-      Now available on TestFlight
-    </p>
-
     <h1 class="hero-heading fade-up" style="--d: 0.08s">
       Your music,<br>
       your server,<br>
@@ -182,32 +177,6 @@ const macScreenshot = `${base}/images/header_mac.png`.replace(/\/+/g, "/");
 
   @media (min-width: 640px) {
     .hero-content { padding-inline: 2rem; }
-  }
-
-  /* ── Badge ───────────────────────────────────────────── */
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.3rem 0.875rem 0.3rem 0.625rem;
-    border-radius: 9999px;
-    border: 1px solid rgba(108, 71, 245, 0.28);
-    background-color: rgba(34, 30, 56, 0.8);
-    font-size: 0.6875rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-accent-fg);
-    margin: 0 0 2rem;
-  }
-
-  .badge-dot {
-    display: inline-block;
-    flex-shrink: 0;
-    width: 0.375rem;
-    height: 0.375rem;
-    border-radius: 50%;
-    background-color: var(--color-accent-primary);
   }
 
   /* ── Heading ─────────────────────────────────────────── */
@@ -371,11 +340,6 @@ const macScreenshot = `${base}/images/header_mac.png`.replace(/\/+/g, "/");
 
     .glow-b {
       background: radial-gradient(circle at 55% 52%, rgba(128, 96, 247, 0.08) 0%, transparent 65%);
-    }
-
-    .hero-badge {
-      background-color: rgba(237, 232, 255, 0.9);
-      border-color: rgba(108, 71, 245, 0.22);
     }
 
     .hero-accent {

@@ -120,14 +120,15 @@ const isLeft = screenshotPosition === "left";
   }
 
   @media (min-width: 768px) {
-    .feature-block.is-left  .feature-media { justify-content: flex-start; }
-    .feature-block.is-right .feature-media { justify-content: flex-end; }
+    .feature-block.is-left  .feature-media { justify-content: center; }
+    .feature-block.is-right .feature-media { justify-content: center; }
   }
 
   /* When both platform images exist: switch to grid so they share the same cell */
   .media-has-variants {
     display: grid;
     justify-items: center;
+    align-items: center;
   }
 
   /* ── Image ───────────────────────────────────────────── */

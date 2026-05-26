@@ -152,20 +152,6 @@
   to   { opacity: 1; }
 }
 
-/* ── Scroll progress bar ────────────────────────────────── */
-#scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 2px;
-  width: 0%;
-  background: linear-gradient(90deg, #6C47F5 0%, #9F86FA 100%);
-  z-index: 9999;
-  will-change: width;
-  pointer-events: none;
-  transform-origin: left;
-}
-
 /* ── Light theme ────────────────────────────────────────── */
 @media (prefers-color-scheme: light) {
   :root {
