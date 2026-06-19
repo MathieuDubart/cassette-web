@@ -5,12 +5,23 @@ import Nav from "../components/Nav.astro";
 interface Props {
   title?: string;
   description?: string;
+  noindex?: boolean;
 }
 
 const {
   title = "Cassette · Native Subsonic and OpenSubsonic client for iOS and macOS",
   description = "A beautiful native iOS and macOS app for your self-hosted music. Built for Navidrome, Subsonic, OpenSubsonic. Open source, offline-first, no tracking.",
+  noindex = false,
 } = Astro.props;
+
+const isHome = Astro.url.pathname === "/" || Astro.url.pathname === "";
+const robotsContent = noindex
+  ? "noindex, nofollow"
+  : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
+const heroImageHref = `${import.meta.env.BASE_URL}/images/header.jpeg`.replace(
+  /\/+/g,
+  "/",
+);
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 const ogImage = new URL(
@@ -29,6 +40,7 @@ const jsonLd = {
       url: siteUrl,
       name: "Cassette",
       description,
+      inLanguage: "en",
       publisher: { "@id": `${siteUrl}#person` },
     },
     {
@@ -70,11 +82,19 @@ const jsonLd = {
       author: { "@id": `${siteUrl}#person` },
       license: "https://opensource.org/licenses/MPL-2.0",
       isAccessibleForFree: true,
+      inLanguage: "en",
+      softwareHelp: "https://github.com/MathieuDubart/Cassette",
+      sameAs: ["https://github.com/MathieuDubart/Cassette"],
     },
     {
       "@type": "Person",
       "@id": `${siteUrl}#person`,
       name: "Mathieu Dubart",
+      url: "https://mathieu-dubart.fr",
+      sameAs: [
+        "https://github.com/MathieuDubart",
+        "https://mathieu-dubart.fr",
+      ],
     },
   ],
 };
@@ -88,11 +108,19 @@ const jsonLd = {
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#0F0D1A" />
     <meta name="color-scheme" content="dark" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={robotsContent} />
+    <meta name="author" content="Mathieu Dubart" />
 
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+
+    {
+      isHome && (
+        <link rel="preload" as="image" href={heroImageHref} fetchpriority="high" />
+      )
+    }
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -103,8 +131,9 @@ const jsonLd = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="627" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Cassette — Native iOS and macOS music player for Navidrome and Subsonic" />
     <meta property="og:locale" content="en_US" />
 
