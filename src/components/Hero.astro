@@ -1,5 +1,6 @@
 ---
 import HeroPlatformSwitcher from "./HeroPlatformSwitcher.astro";
+import MacInstall from "./MacInstall.astro";
 
 const githubUrl = "https://github.com/MathieuDubart/Cassette";
 const base = import.meta.env.BASE_URL;
@@ -43,20 +44,6 @@ const macScreenshot = `${base}/images/header_mac.png`.replace(/\/+/g, "/");
         TestFlight
       </a>
 
-      <!-- Mac App Store CTA — aria-disabled keeps it keyboard-reachable and announced as unavailable -->
-      <button
-        type="button"
-        class="btn-primary btn-soon"
-        aria-disabled="true"
-        aria-label="Mac App Store — coming soon"
-      >
-        <svg viewBox="0 0 24 24" fill="currentColor" class="btn-icon" aria-hidden="true">
-          <path d="M21 2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7l-2 3v1h8v-1l-2-3h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 12H3V4h18v10z"/>
-        </svg>
-        Mac App Store
-        <span class="btn-soon-badge" aria-hidden="true">Soon</span>
-      </button>
-
       <!-- Secondary link — underline style, no ghost button -->
       <a
         href={githubUrl}
@@ -70,6 +57,9 @@ const macScreenshot = `${base}/images/header_mac.png`.replace(/\/+/g, "/");
         View on GitHub
       </a>
     </div>
+
+    <!-- macOS install — Homebrew, with copy-to-clipboard -->
+    <MacInstall />
 
   </div>
 
@@ -249,30 +239,6 @@ const macScreenshot = `${base}/images/header_mac.png`.replace(/\/+/g, "/");
 
   .btn-primary:active { transform: none; }
 
-  /* ── Disabled "Soon" CTA ─────────────────────────────── */
-  .btn-soon {
-    opacity: 0.48;
-    cursor: not-allowed;
-    pointer-events: none;
-    font-family: inherit;
-    -webkit-appearance: none;
-    appearance: none;
-    border: none;
-  }
-
-  .btn-soon-badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.1rem 0.45rem;
-    border-radius: 9999px;
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    background-color: rgba(255, 255, 255, 0.22);
-    margin-left: 0.125rem;
-  }
-
   /* ── Secondary link ──────────────────────────────────── */
   /* No ghost border — underline only, AccentFg underline color */
   .btn-link {
@@ -354,10 +320,6 @@ const macScreenshot = `${base}/images/header_mac.png`.replace(/\/+/g, "/");
 
     .btn-primary:hover {
       box-shadow: 0 6px 28px rgba(108, 71, 245, 0.45);
-    }
-
-    .btn-soon-badge {
-      background-color: rgba(108, 71, 245, 0.15);
     }
 
     .btn-link {
