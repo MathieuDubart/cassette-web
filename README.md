@@ -1,6 +1,6 @@
 # Cassette — Landing Page
 
-Public marketing site for [Cassette](https://github.com/MathieuDubart/Cassette), a native iOS and macOS client for Subsonic and OpenSubsonic music servers.
+Public marketing site for [Cassette](https://github.com/CassetteLab/cassette), a native iOS and macOS client for Subsonic and OpenSubsonic music servers.
 
 Live at **https://mathieudubart.github.io/cassette-web/**.
 
