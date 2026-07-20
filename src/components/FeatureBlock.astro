@@ -158,16 +158,6 @@ const isLeft = screenshotPosition === "left";
     .mac-image { max-width: 600px; }
   }
 
-  /* Static 3D tilt on desktop — depth without scroll-linked motion */
-  @media (min-width: 768px) {
-    .feature-block.is-right .feature-image {
-      transform: perspective(1200px) rotateY(-4deg);
-    }
-    .feature-block.is-left .feature-image {
-      transform: perspective(1200px) rotateY(4deg);
-    }
-  }
-
   /* ── Text elements ───────────────────────────────────── */
   .feature-label {
     font-size: 0.6875rem;
